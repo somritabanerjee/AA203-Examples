@@ -18,7 +18,8 @@ lb = -uMax*ones(3*N+3,1); ub = uMax*ones(3*N+3,1); % Lower and upper bounds. For
 lb(1:N+1) = 0.0; ub(1:N+1) = M; % For the state x : 0 \le x \le M
 lb(N+2:2*N+2) = 0.0; ub(N+2:2*N+2) = l; % For the state y : 0\le x \le l
 
-options=optimoptions('fmincon','Display','iter','Algorithm','sqp','MaxFunctionEvaluations',10000);
+options=optimoptions('fmincon','Display','iter','Algorithm','sqp','MaxFunEvals',10000);
+% options=optimoptions('fmincon','Display','iter','Algorithm','sqp','MaxFunctionEvaluations',10000);
 [var,Fval,convergence] = fmincon(@cost,varInit,[],[],[],[],lb,ub,@constraint,options); % Solving the problem
 convergence % = 1, good
 
